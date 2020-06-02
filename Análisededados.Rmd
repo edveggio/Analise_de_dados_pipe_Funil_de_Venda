@@ -1,0 +1,35 @@
+---
+title: "Analise_de_dados_Finil_de_Vendas"
+author: "Ed Velho"
+date: "02/06/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Bibliotecas
+```{r Bibliotecas}
+library(readr)
+library(dplyr)
+```
+
+#Limpeza do banco de dados
+
+```{r limpeza_dos_dados}
+pipe_Funil_de_Vendas <- read_delim("D:/Ed Velho/Documents/Analise do banco de dados/pipe Funil de Vendas.csv", 
+    ";", escape_double = FALSE, trim_ws = TRUE)
+
+not_all_na <- function(x) {!all(is.na(x))}
+
+pipe_Funil_de_Vendas_limpo <- pipe_Funil_de_Vendas %>% select_if(not_all_na)
+```
+
+#Análise Exploratória 
+
+```{r analise_exploratória}
+pipe_Funil_de_Vendas_limpo <- pipe_Funil_de_Vendas_limpo[!is.na(pipe_Funil_de_Vendas$Pipeline) & pipe_Funil_de_Vendas$Pipeline == "Funil de vendas",]
+```
+
+  Chegamos a conclusão ...
